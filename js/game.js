@@ -3,12 +3,9 @@ import Grid from './grid';
 
 export default class Game {
   constructor(canvas, options) {
-
     const defaults = {
       width: 100,
       height: 100,
-      cellSize: 10,
-      rules: '23/3',
       gridColor: "#eee",
       cellColor: '#ccc',
     };

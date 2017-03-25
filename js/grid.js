@@ -1,12 +1,8 @@
 import Vector from './vector';
 
-/**
- * It is one-dimensional array where (x, y) value you can find by getting [x + width * y]
- */
-
 export default class Grid {
   constructor(width, height) {
-    this.grid = new Array(width * height);
+    this.grid = new Array(width * height); // It is one-dimensional array where (x, y) value you can find by getting [x + width * y]
     this.width = width;
     this.height = height;
     this.directions = {

@@ -1,10 +1,8 @@
 import Vector from './vector';
 import Grid from './grid';
-
 import Game from './game';
 
 import * as http from './http';
-
 
 http.get('/endpoint')
   .then((response) => {
@@ -16,5 +14,3 @@ http.get('/endpoint')
       console.log(data);
     });
   });
-
-http.post
