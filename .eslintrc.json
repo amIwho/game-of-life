@@ -1,0 +1,67 @@
+{
+    "extends": "airbnb",
+    "rules": {
+        "func-names": [
+            "error",
+            "never"
+        ],
+        "max-len": [
+            2,
+            {
+                "code": 176,
+                "tabWidth": 4,
+                "ignoreUrls": true
+            }
+        ],
+        "no-use-before-define": [
+            "error",
+            {
+                "functions": false
+            }
+        ],
+        "no-param-reassign": [
+            "error",
+            {
+                "props": true,
+                "ignorePropertyModificationsFor": [
+                    "$scope",
+                    "global",
+                    "initOptions"
+                ]
+            }
+        ],
+        "quote-props": [
+            1,
+            "consistent-as-needed"
+        ],
+        "no-cond-assign": [
+            2,
+            "except-parens"
+        ],
+        "no-alert": 0,
+        "no-unused-expressions": [
+            "error",
+            {
+                "allowShortCircuit": true
+            }
+        ]
+    },
+    "globals": {
+        "angular": 1,
+        "_": 1,
+        "$": 1,
+        "browser": 1,
+        "console": 1,
+        "Inside": 1,
+        "window": 1,
+        "jQuery": 1,
+        "Lsd": 1,
+        "util": 1,
+        "bundles": 1,
+        "Mosaic": 1,
+        "Spinner": 1
+    },
+    "env": {
+        "browser": 1
+    }
+}
