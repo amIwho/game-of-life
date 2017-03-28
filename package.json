@@ -7,19 +7,29 @@
     "doc": "doc"
   },
   "scripts": {
-    "start": "http-server",
+    "start": "nodemon ./bin/www --exec babel-node --presets es2015,stage-2 --watch server/*.js",
     "webpack": "webpack"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "babel-cli": "^6.24.0",
     "babel-core": "^6.24.0",
     "babel-loader": "^6.4.1",
     "babel-preset-es2015": "^6.24.0",
+    "babel-preset-stage-2": "^6.22.0",
     "eslint": "^3.18.0",
     "eslint-config-airbnb-base": "^11.1.1",
     "eslint-plugin-import": "^2.2.0",
     "http-server": "^0.9.0",
+    "mocha": "^3.2.0",
+    "nodemon": "^1.11.0",
+    "request": "^2.81.0",
+    "supertest": "^3.0.0",
     "webpack": "^2.3.0"
-  }
+  },
+  "dependencies": {
+    "express": "^4.15.2"
+  },
+  "bin": "./bin/www"
 }

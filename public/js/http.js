@@ -1,4 +1,4 @@
-function get(url) {
+function getRequest(url) {
   return fetch(url)
     .catch((err) => {
       // todo: handle the fetch error
@@ -13,4 +13,4 @@ function postRequest() {
     });
 }
 
-export default {get, post: postRequest};
+export default { get: getRequest, post: postRequest };

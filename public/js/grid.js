@@ -6,14 +6,14 @@ export default class Grid {
     this.width = width;
     this.height = height;
     this.directions = {
-      n: new Vector(0, -1),
-      ne: new Vector(1, -1),
-      e: new Vector(1, 0),
-      se: new Vector(1, 1),
-      s: new Vector(0, 1),
-      sw: new Vector(-1, 1),
-      w: new Vector(-1, 0),
-      nw: new Vector(-1, -1),
+      u: new Vector(0, -1),
+      ur: new Vector(1, -1),
+      r: new Vector(1, 0),
+      rd: new Vector(1, 1),
+      d: new Vector(0, 1),
+      dl: new Vector(-1, 1),
+      l: new Vector(-1, 0),
+      ul: new Vector(-1, -1),
     };
   }
 
