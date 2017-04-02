@@ -15,6 +15,31 @@ export default class Grid {
       l: new Vector(-1, 0),
       ul: new Vector(-1, -1),
     };
+
+    this.$grid = this.generateDomMap(this.grid);
+  }
+
+  generateDomMap(grid) {
+    let fragment = document.createDocumentFragment();
+    let game = document.querySelector('#game-of-life');
+    let cell;
+
+    for (let x = 0; x < this.width; x += 1) {
+      for (let y = 0; y < this.height; y += 1) {
+        cell = document.createElement('div');
+        cell.id = x + _ + y;
+        cell.className = this.get(new Vector(x, y)) === 'X' ? 'creature' : 'jungle';
+
+        cell.onclick((e) => {
+          // some click logic
+        });
+        fragment.appendChild(cell);
+      }
+    }
+
+    game.appendChild(fragment);
+
+    return game;
   }
 
   get(vector) {
@@ -35,6 +60,7 @@ export default class Grid {
       }
     }
   }
+
   free(x, y) {
     return !this.directions.some(vector => this.get((new Vector(x, y)).add(vector)) === 'X');
   }

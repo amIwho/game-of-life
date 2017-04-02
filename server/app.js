@@ -1,17 +1,29 @@
-const express = require('express');
+const static = require('node-static');
+const file = new static.Server('./public');
 
-const app = express();
 
-app.use(express.static('public'));
+const app = require('http').createServer(handler);
+const io = require('socket.io')(app);
+const cfg = require('./config.json');
 
-app.get('/', (req, res) => {
-  res.send('Ok');
+app.listen(3000, () => {
+  console.log("Listening on port 3000");
 });
 
-app.get('/items', (req, res) => {
-  res.json({
-    items: [0, 0, 0, 0, 1, 1, 1, 0],
+function handler(req, res) {
+  req.addListener('end', () => {
+    file.serve(req, res);
+  }).resume();
+}
+
+io.on('connection', function (socket) {
+  socket.send('Hello');
+
+  socket.on('message', (message) => {
+    console.log(message);
   });
-});
 
-module.exports = app;
+  socket.on('user:register', () => {
+    console.log(arguments);
+  })
+});

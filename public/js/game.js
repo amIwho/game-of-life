@@ -1,26 +1,30 @@
-import Grid from './grid';
+import Socket from './socket';
 
-export default class Game {
-  constructor(canvas, options) {
-    const defaults = {
-      width: 100,
-      height: 100,
-      gridColor: '#eee',
-      cellColor: '#ccc',
-    };
-    this.canvas = canvas;
-    this.options = Object.assign(defaults, options);
+class Game {
+  constructor() {
+    const cellColor = genRandomColor();
+    const io = new Socket('http://localhost:3000');
 
-    this.ctx = canvas.getContext('2d');
-    this.step = 0;
-    this.grid = new Grid(100, 100);
+    io.on('connect', (data) => {
+      this.grid = data;
+    });
+
+    io.emit({
+      userColor: cellColor
+    });
+
+    return this;
   }
 
-  start() {
-
-  }
-
-  nextGeneration() {
+  render() {
 
   }
 }
+
+function genRandomColor() {
+  let color = '#';
+  for (let i = 0; i < 6; i += 1 ) { color += '0123456789ABCDEF'[Math.floor(Math.random() * 16)];}
+  return color;
+}
+
+let gameOfLife = new Game();
