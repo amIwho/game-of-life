@@ -1,17 +1,12 @@
-import Socket from './socket';
 
 class Game {
   constructor() {
     const cellColor = genRandomColor();
-    const io = new Socket('http://localhost:3000');
 
-    io.on('connect', (data) => {
-      this.grid = data;
-    });
-
-    io.emit({
-      userColor: cellColor
-    });
+    var ws = new WebSocket('ws://' + window.document.location.host.replace(/:.*/, '') + ':3001');
+    ws.onmessage = function (event) {
+      alert(event.data);
+    };
 
     return this;
   }

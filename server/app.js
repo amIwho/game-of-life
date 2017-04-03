@@ -1,29 +1,11 @@
-const static = require('node-static');
-const file = new static.Server('./public');
+require('./staticServer');
 
+const WebSocketServer = require('ws').Server;
+const wss = new WebSocketServer({port: 3001});
 
-const app = require('http').createServer(handler);
-const io = require('socket.io')(app);
-const cfg = require('./config.json');
-
-app.listen(3000, () => {
-  console.log("Listening on port 3000");
-});
-
-function handler(req, res) {
-  req.addListener('end', () => {
-    file.serve(req, res);
-  }).resume();
-}
-
-io.on('connection', function (socket) {
-  socket.send('Hello');
-
-  socket.on('message', (message) => {
-    console.log(message);
+wss.on('connection', function(ws) {
+  ws.on('message', function(message) {
+    ws.send(message);
   });
-
-  socket.on('user:register', () => {
-    console.log(arguments);
-  })
+  ws.send('something');
 });
