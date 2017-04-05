@@ -1,24 +1,11 @@
-/**
- * Static HTTP Server
- *
- * Create a static file server instance to serve files
- * and folder in the './public' folder
- */
+const port = 3000;
+const static = require('node-static');
+const staticServer = new static.Server('./public', {cache: 3600, gzip: true});
 
-// modules
-var static = require('node-static');
-var port = 3000;
-var http = require('http');
-
-// config
-var file = new static.Server('./public', {
-  cache: 3600,
-  gzip: true
-});
-
-// serve
-http.createServer(function (request, response) {
-  request.addListener('end', function () {
-    file.serve(request, response);
+require('http').createServer((request, response) => {
+  request.addListener('end', () => {
+    staticServer.serve(request, response);
   }).resume();
-}).listen(port);
+}).listen(port, () => {
+  console.log(`Server is running on port ${port}`)
+});

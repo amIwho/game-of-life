@@ -1,7 +1,11 @@
-import Vector from './vector';
+const Vector = require('./vector');
 
-export default class Grid {
+let instance = null;
+
+class Grid {
   constructor(width, height) {
+    if (!instance) instance = this;
+
     this.grid = new Array(width * height); // It is one-dimensional array where (x, y) value you can find by getting [x + width * y]
     this.width = width;
     this.height = height;
@@ -16,30 +20,7 @@ export default class Grid {
       ul: new Vector(-1, -1),
     };
 
-    this.$grid = this.generateDomMap(this.grid);
-  }
-
-  generateDomMap(grid) {
-    let fragment = document.createDocumentFragment();
-    let game = document.querySelector('#game-of-life');
-    let cell;
-
-    for (let x = 0; x < this.width; x += 1) {
-      for (let y = 0; y < this.height; y += 1) {
-        cell = document.createElement('div');
-        cell.id = x + _ + y;
-        cell.className = this.get(new Vector(x, y)) === 'X' ? 'creature' : 'jungle';
-
-        cell.onclick((e) => {
-          // some click logic
-        });
-        fragment.appendChild(cell);
-      }
-    }
-
-    game.appendChild(fragment);
-
-    return game;
+    return instance;
   }
 
   get(vector) {
@@ -67,3 +48,4 @@ export default class Grid {
 
 }
 
+module.exports = new Grid(100, 100);
